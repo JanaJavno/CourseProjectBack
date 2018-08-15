@@ -1,14 +1,11 @@
 package com.example.req.domain;
 
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Set;
 
 @Entity
-public class User implements UserDetails {
+public class User {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
@@ -24,7 +21,7 @@ public class User implements UserDetails {
 
     private String activationCode;
 
-    @Override
+    /*@Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return null;
     }
@@ -57,7 +54,7 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return false;
-    }
+    }*/
 
     /*@ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))

@@ -1,5 +1,7 @@
 package com.example.req.service.DTO;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Null;
@@ -7,11 +9,10 @@ import javax.validation.constraints.Null;
 public class UserDTO {
     @Null
     private Long id;
-    @NotNull
+    @JsonProperty("username")
     private String username;
-    @NotNull
-    @Email
+    @JsonProperty("email")
     private String email;
-    @NotNull
+    @JsonProperty("password")
     private String password;
 }
