@@ -7,12 +7,19 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Null;
 
 public class UserDTO {
-    @Null
-    private Long id;
-    @JsonProperty("username")
-    private String username;
-    @JsonProperty("email")
     private String email;
-    @JsonProperty("password")
+    private String username;
     private String password;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
 }
