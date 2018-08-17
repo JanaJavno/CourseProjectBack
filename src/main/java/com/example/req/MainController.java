@@ -2,6 +2,7 @@ package com.example.req;
 
 import com.example.req.domain.Role;
 import com.example.req.domain.User;
+import com.example.req.service.DTO.LoginResponseDTO;
 import com.example.req.service.DTO.LoginUserDTO;
 import com.example.req.service.DTO.RegistrationUserDTO;
 import com.example.req.service.UserService;
@@ -24,12 +25,13 @@ public class MainController {
     }
 
     @PostMapping(value="/registration", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public User registration(@RequestBody RegistrationUserDTO userdto) {
-        return userService.addNewUser(userdto);
+    public LoginResponseDTO registration(@RequestBody RegistrationUserDTO userdto) {
+        return userService
+                .addNewUser(userdto);
     }
 
     @PostMapping(value="/login", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public String login(@RequestBody LoginUserDTO userdto) {
+    public LoginResponseDTO login(@RequestBody LoginUserDTO userdto) {
         return userService.loginUser(userdto);
     }
 
