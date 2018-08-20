@@ -1,4 +1,4 @@
-package com.example.req;
+package com.example.req.controllers;
 
 import com.example.req.domain.Manual;
 import com.example.req.domain.Role;
@@ -18,17 +18,15 @@ import java.util.List;
 public class MainController {
 
     private final UserService userService;
-    private final ManualRepository manualRepository;
 
-    public MainController(UserService userService, ManualRepository manualRepository) {
+    public MainController(UserService userService) {
         this.userService = userService;
-        this.manualRepository = manualRepository;
     }
 
-    @GetMapping("/getManuals")
+    /*@GetMapping("/getManuals")
     public List<Manual> greeting() {
         return manualRepository.findAll();
-    }
+    }*/
 
     @PostMapping(value="/registration", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public LoginResponseDTO registration(@RequestBody RegistrationUserDTO userdto) {

@@ -7,17 +7,23 @@ public class Manual {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
+
     @Column(length = 64)
     private String title;
 
     private String url;
 
+    @Column(length = 32, columnDefinition = "varchar(32)")
+    @Enumerated(value = EnumType.STRING)
+    private ManualCategory category;
+
     public Manual() {
     }
 
-    public Manual(String name, String picturePath) {
-        this.title = name;
-        this.url = picturePath;
+    public Manual(String title, String url, ManualCategory category) {
+        this.title = title;
+        this.url = url;
+        this.category = category;
     }
 
     public Long getId() {
@@ -42,5 +48,13 @@ public class Manual {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public ManualCategory getCategory() {
+        return category;
+    }
+
+    public void setCategory(ManualCategory category) {
+        this.category = category;
     }
 }
