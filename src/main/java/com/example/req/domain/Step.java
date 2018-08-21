@@ -13,6 +13,9 @@ public class Step {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
 
+    @Column(length = 64)
+    private String name;
+
     private String picturePath;
 
     private String instruction;
@@ -26,7 +29,8 @@ public class Step {
     public Step() {
     }
 
-    public Step(String picturePath, String instruction, Manual manual) {
+    public Step(String name, String picturePath, String instruction, Manual manual) {
+        this.name = name;
         this.picturePath = picturePath;
         this.instruction = instruction;
         this.manual = manual;
@@ -62,5 +66,13 @@ public class Step {
 
     public void setManual(Manual manual) {
         this.manual = manual;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }
