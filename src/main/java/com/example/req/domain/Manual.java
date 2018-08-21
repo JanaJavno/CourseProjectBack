@@ -13,6 +13,8 @@ public class Manual {
 
     private String url;
 
+    private String description;
+
     @Column(length = 32, columnDefinition = "varchar(32)")
     @Enumerated(value = EnumType.STRING)
     private ManualCategory category;
@@ -20,9 +22,10 @@ public class Manual {
     public Manual() {
     }
 
-    public Manual(String title, String url, ManualCategory category) {
+    public Manual(String title, String url, String description, ManualCategory category) {
         this.title = title;
         this.url = url;
+        this.description = description;
         this.category = category;
     }
 
@@ -56,5 +59,13 @@ public class Manual {
 
     public void setCategory(ManualCategory category) {
         this.category = category;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

@@ -1,6 +1,7 @@
 package com.example.req.controllers;
 
 import com.example.req.domain.Manual;
+import com.example.req.domain.Step;
 import com.example.req.repository.ManualRepository;
 import com.example.req.service.DTO.ResourceNotFoundException;
 import com.example.req.service.ManualService;
@@ -35,6 +36,11 @@ public class ManualController {
     @GetMapping("/category/{type}")
     public List<Manual> getTypedManuals(@PathVariable String type) {
         return manualService.findByType(type);
+    }
+
+    @GetMapping("/{manualId}")
+    public List<Step> loadManual(@PathVariable Long manualId) {
+        return manualService.load(manualId);
     }
 
     @PutMapping("/{manualId}")
