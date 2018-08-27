@@ -1,12 +1,15 @@
 package com.example.req.controllers;
 
 import com.example.req.domain.Manual;
+import com.example.req.domain.ManualCategory;
 import com.example.req.domain.Step;
 import com.example.req.repository.ManualRepository;
+import com.example.req.service.DTO.ManualDTO;
 import com.example.req.service.DTO.ResourceNotFoundException;
 import com.example.req.service.ManualService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,9 +31,9 @@ public class ManualController {
         return manualService.findAll();
     }
 
-    @PostMapping("/")
-    public Manual createManual(@Valid @RequestBody Manual manual) {
-        return manualService.createDefault(manual);
+    @PostMapping(value = "/")
+    public Manual createManual(@RequestBody ManualDTO manualDTO) {
+        return manualService.createDefault(manualDTO);
     }
 
     @GetMapping("/category/{type}")
@@ -43,7 +46,7 @@ public class ManualController {
         return manualService.load(manualId);
     }
 
-    @PutMapping("/{manualId}")
+    /*@PutMapping("/{manualId}")
     public Manual updateManual(@PathVariable Long manualId, @Valid @RequestBody Manual manualRequest) {
         return manualService.update(manualId, manualRequest);
     }
@@ -51,6 +54,10 @@ public class ManualController {
     @DeleteMapping("/{manualId}")
     public ResponseEntity<?> deleteManual(@PathVariable Long manualId) {
         return manualService.delete(manualId);
-    }
+    }*/
 
+    @GetMapping("/allCategories")
+    public ManualCategory[] getAllCategories() {
+        return ManualCategory.values();
+    }
 }

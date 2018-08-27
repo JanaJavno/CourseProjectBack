@@ -1,17 +1,14 @@
 package com.example.req.controllers;
 
-import com.example.req.domain.Manual;
-import com.example.req.domain.Role;
-import com.example.req.domain.User;
-import com.example.req.repository.ManualRepository;
 import com.example.req.service.DTO.LoginResponseDTO;
 import com.example.req.service.DTO.LoginUserDTO;
 import com.example.req.service.DTO.RegistrationUserDTO;
 import com.example.req.service.UserService;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api")

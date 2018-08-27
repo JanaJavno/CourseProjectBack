@@ -5,10 +5,14 @@ import com.example.req.domain.ManualCategory;
 import com.example.req.domain.Step;
 import com.example.req.repository.ManualRepository;
 import com.example.req.repository.StepRepository;
+import com.example.req.service.DTO.JsonException;
+import com.example.req.service.DTO.ManualDTO;
 import com.example.req.service.DTO.ResourceNotFoundException;
+import com.example.req.service.DTO.StepDTO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -25,8 +29,20 @@ public class ManualService {
         return manualRepository.findAll();
     }
 
-    public Manual createDefault (Manual manual) {
-        return manualRepository.save(manual);
+    public Manual createDefault (ManualDTO manualDTO) {
+        Manual manual = manualRepository.findByTitle(manualDTO.getManual_name());
+        if (manual != null){
+            throw new JsonException("Manual with this title has already exist");
+        }
+        else manual = new Manual (manualDTO.getManual_name(), "", manualDTO.getManual_description(),
+                ManualCategory.valueOf(manualDTO.getManual_category()), new Date());
+        manualRepository.save(manual);
+        manual = manualRepository.findByTitle(manual.getTitle());
+        StepDTO[] steps= manualDTO.getSteps();
+        for (StepDTO step : steps){
+            stepRepository.save(new Step(step.getStep_name(), "/assets", step.getStep_instruction(), manual));
+        }
+        return manual;
     }
 
     public List<Manual> findByType (String type) {
